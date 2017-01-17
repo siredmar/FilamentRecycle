@@ -5,9 +5,14 @@
 #include "stdio.h"
 #include "EcuM.h"
 #include "Uart.h"
+#include "Adc.h"
+#include "Adc_Lcfg.h"
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include "Timer.h"
+#include "Caliper.h"
+#include "Heating.h"
+#include "Dbg.h"
 
 #define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
 #define clockCyclesToMicroseconds(b) (((b) * 1000L) / (F_CPU / 1000L))
@@ -94,8 +99,11 @@ static void EcuM_InitModules(void)
     EcuM_DisableWatchdog();
 #endif
     Gpio_Init();
-    Caliper_Init();
     Uart_Init();
+    Adc_Init();
+
+    Caliper_Init();
+    Heating_Init();
 }
 
 static void EcuM_InitBaseTimer(void)
@@ -151,12 +159,12 @@ void EcuM_Handler(void)
 
     if(Flag500ms)
     {
-        Flag500ms = 0;
         SoftTimer_Start(&Timer);
         Caliper_Handler();
         Dbg_ReadVariableInteger("Time usage [ms]: ", SoftTimer_GetElapsedMs(&Timer));
-
         Caliper_PrintOutput();
+        Heating_Handler();
+        Flag500ms = 0;
 
     }
 

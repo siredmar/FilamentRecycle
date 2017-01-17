@@ -26,6 +26,7 @@
  **************************************************************************************************/
 /* ------------------------------------ INCLUDES ------------------------------------------------ */
 #include "Adc.h"
+#include "Adc_Lcfg.h"
 #include <avr/interrupt.h>
 
 /* ------------------------------------ DEFINES ------------------------------------------------- */
@@ -36,7 +37,7 @@
 
 /* ------------------------------------ PRIVATE VARIABLES --------------------------------------- */
 
-static Adc_ConfigType  AdcConfig;
+static Adc_ConfigType  *AdcConfig;
 
 static volatile const Adc_RegisterAddressType Adc_RegisterAdresses_as =
 {
@@ -56,32 +57,29 @@ static uint16 Adc_GetResult10bit(void);
 
 /* ------------------------------------ GLOBAL FUNCTIONS ---------------------------------------- */
 
-void Adc_Init(const Adc_ConfigType *configPtr)
+void Adc_Init(void)
 {
-    if (configPtr == ADC_CALLBACK_NULL_PTR)
-    {
-        configPtr = (const Adc_ConfigType*)Adc_GetLcfgData();
-    }
+    AdcConfig = (const Adc_ConfigType*)Adc_GetLcfgData();
 
-    AdcConfig.enableState_e         = (Adc_EnableStateType_e)         (0x01 & configPtr->enableState_e);
-    AdcConfig.interruptState_e      = (Adc_InterruptStateType_e)      (0x01 & configPtr->interruptState_e);
-    AdcConfig.prescalerControl_e    = (Adc_PrescalerType_e)           (0x07 & configPtr->prescalerControl_e);
-    AdcConfig.triggerControl_e      = (Adc_TriggerType_e)                     configPtr->triggerControl_e;
-    AdcConfig.referenceControl_e    = (Adc_ReferenceType_e)           (0x03 & configPtr->referenceControl_e);
-    AdcConfig.defaultChannel_e      = (Adc_ChannelType_e)             (0x07 & configPtr->defaultChannel_e);
-    AdcConfig.digitalInputDisable_e = (Adc_DigitalInputDisableType_e)         configPtr->digitalInputDisable_e;
-    AdcConfig.callbackFunc_pv       = (Adc_CallbackType)                      configPtr->callbackFunc_pv;
-    AdcConfig.averageControl_e      = (Adc_AverageType_e)             (0x07 & configPtr->averageControl_e);
+//    AdcConfig->enableState_e         = (Adc_EnableStateType_e)         (0x01 & configPtr->enableState_e);
+//    AdcConfig->interruptState_e      = (Adc_InterruptStateType_e)      (0x01 & configPtr->interruptState_e);
+//    AdcConfig->prescalerControl_e    = (Adc_PrescalerType_e)           (0x07 & configPtr->prescalerControl_e);
+//    AdcConfig->triggerControl_e      = (Adc_TriggerType_e)                     configPtr->triggerControl_e;
+//    AdcConfig->referenceControl_e    = (Adc_ReferenceType_e)           (0x03 & configPtr->referenceControl_e);
+//    AdcConfig->defaultChannel_e      = (Adc_ChannelType_e)             (0x07 & configPtr->defaultChannel_e);
+//    AdcConfig->digitalInputDisable_e = (Adc_DigitalInputDisableType_e)         configPtr->digitalInputDisable_e;
+//    AdcConfig->callbackFunc_pv       = (Adc_CallbackType)                      configPtr->callbackFunc_pv;
+//    AdcConfig->averageControl_e      = (Adc_AverageType_e)             (0x07 & configPtr->averageControl_e);
 
     /* enable ADC and set prescaler */
     *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) = \
-            (AdcConfig.enableState_e      << ADC_ADEN) | \
-            (AdcConfig.prescalerControl_e << ADC_ADPS0);
+            (AdcConfig->enableState_e      << ADC_ADEN) | \
+            (AdcConfig->prescalerControl_e << ADC_ADPS0);
 
     /* selecting voltage reference, result alignment and ADC channel */
     *(Adc_RegisterAdresses_as.Adc_MuxRegister_pui8) =  \
-            (AdcConfig.referenceControl_e << ADC_REFS0) | \
-            (AdcConfig.defaultChannel_e   << ADC_MUX0);
+            (AdcConfig->referenceControl_e << ADC_REFS0) | \
+            (AdcConfig->defaultChannel_e   << ADC_MUX0);
 
     /* wait for some ADC clock cycles to take the settings */
     //_delay_ms(1);
@@ -94,21 +92,21 @@ void Adc_Init(const Adc_ConfigType *configPtr)
 /* ---------------------------------------------------------------------------------------------- */
 
     /* set the trigger sources if needed */
-    if (AdcConfig.triggerControl_e != ADC_TRIGGER_SINGLE_SHOT)
+    if (AdcConfig->triggerControl_e != ADC_TRIGGER_SINGLE_SHOT)
     {
-        *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterB_pui8)  = (AdcConfig.triggerControl_e << ADC_ADTS0);
+        *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterB_pui8)  = (AdcConfig->triggerControl_e << ADC_ADTS0);
         *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADATE);
     }
 
     /* configure adc interrupt */
-    *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |=  (AdcConfig.interruptState_e << ADC_ADIE);
+    *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |=  (AdcConfig->interruptState_e << ADC_ADIE);
 }
 
 void Adc_DisableDigitalInput(const Adc_ChannelType_e channels)
 {
     /* disable digital system of given port pin */
     *(Adc_RegisterAdresses_as.Adc_DigitalInputDisableRegister_pui8) = channels;
-    AdcConfig.digitalInputDisable_e = channels;
+    AdcConfig->digitalInputDisable_e = channels;
 }
 
 void Adc_SetChannel(const Adc_ChannelType_e channel)
@@ -126,11 +124,11 @@ void Adc_SetChannel(const Adc_ChannelType_e channel)
     while(*(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) & (1 << ADC_ADSC));
 
     /* save channel in local config */
-    AdcConfig.defaultChannel_e = (Adc_ChannelType_e) (0x07 & channel);
+    AdcConfig->defaultChannel_e = (Adc_ChannelType_e) (0x07 & channel);
 
     /* clear and set channel in register */
     *(Adc_RegisterAdresses_as.Adc_MuxRegister_pui8) &= 0xE0;
-    *(Adc_RegisterAdresses_as.Adc_MuxRegister_pui8) |= (AdcConfig.defaultChannel_e << ADC_MUX0);
+    *(Adc_RegisterAdresses_as.Adc_MuxRegister_pui8) |= (AdcConfig->defaultChannel_e << ADC_MUX0);
 
     /* enable auto trigger if previously set */
     if (autoTriggerFlag != 0) {
@@ -145,7 +143,7 @@ uint8 Adc_Read8bit(void)
     /* start conversion */
     *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADSC);
 
-    if(AdcConfig.interruptState_e == ADC_INTERRUPT_DISABLED)
+    if(AdcConfig->interruptState_e == ADC_INTERRUPT_DISABLED)
     {
         /* wait for end of conversion, fetch adc value and clear the flag */
         while (!(*(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) & (1 << ADC_ADIF)));
@@ -167,7 +165,7 @@ uint16 Adc_Read10bit(void)
     /* start conversion */
     *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADSC);
 
-    if(AdcConfig.interruptState_e == ADC_INTERRUPT_DISABLED)
+    if(AdcConfig->interruptState_e == ADC_INTERRUPT_DISABLED)
     {
         /* wait for end of conversion, fetch adc value and clear the flag */
         while (!(*(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) & (1 << ADC_ADIF)));
@@ -187,7 +185,7 @@ uint16 Adc_Read8bitAverage(void)
    uint16 avResult_ui16 = 0;
    uint8 averages_ui8;
 
-   averages_ui8 = AdcConfig.averageControl_e;
+   averages_ui8 = AdcConfig->averageControl_e;
 
    for(uint8 avCnt_ui8 = 0; avCnt_ui8 <= (1 << averages_ui8); avCnt_ui8++)
    {
@@ -205,7 +203,7 @@ uint16 Adc_Read10bitAverage(void)
    uint16 avResult_ui16 = 0;
    uint8 averages_ui8;
 
-   averages_ui8 = AdcConfig.averageControl_e;
+   averages_ui8 = AdcConfig->averageControl_e;
 
    for(uint8 avCnt_ui8 = 0; avCnt_ui8 <= (1 << averages_ui8); avCnt_ui8++)
    {
@@ -239,9 +237,9 @@ ISR(ADC_vect)
 
    adcResult_ui16 = Adc_GetResult10bit();
 
-   if(AdcConfig.callbackFunc_pv != ADC_CALLBACK_NULL_PTR)
+   if(AdcConfig->callbackFunc_pv != ADC_CALLBACK_NULL_PTR)
    {
-      AdcConfig.callbackFunc_pv(adcResult_ui16);
+      AdcConfig->callbackFunc_pv(adcResult_ui16);
    }
    else
    {

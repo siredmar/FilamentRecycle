@@ -20,7 +20,6 @@
 /* ------------------------------------ INCLUDES ------------------------------------------------ */
 
 #include "Adc_Lcfg.h"
-
 #include "Adc.h"
 
 
@@ -45,13 +44,13 @@ static const Adc_ConfigType Adc_initialConfiguration_s =
 {
         ADC_MODULE_ENABLED,                 // enableState_e;
         ADC_INTERRUPT_DISABLED,             // interruptState_e;
-        ADC_CLOCK_PRESCALER_64,             // prescalerControl_e;
+        ADC_CLOCK_PRESCALER_128,            // prescalerControl_e;
         ADC_TRIGGER_SINGLE_SHOT,            // triggerControl_e;
         ADC_REFERENCE_AVCC,                 // referenceControl_e;
-        ADC_CHANNEL_7,                      // defaultChannel_e;
-        ADC_DIGITAL_INPUT_DISABLE_NONE,     // digitalInputDisable_e;
+        ADC_CHANNEL_0,                      // defaultChannel_e;
+        ADC_DIGITAL_INPUT_DISABLE_PIN0,     // digitalInputDisable_e;
         ADC_CALLBACK_NULL_PTR,              // callbackFunc_pv;
-        ADC_AVERAGE_4_SAMPLES               // averageControl_e;
+        ADC_AVERAGE_16_SAMPLES               // averageControl_e;
 };
 
 

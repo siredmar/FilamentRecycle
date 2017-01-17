@@ -153,7 +153,7 @@ typedef struct
 
 /* ------------------------------------ PROTOTYPES ---------------------------------------------- */
 
-void Adc_Init(const Adc_ConfigType *configPtr);
+void Adc_Init(void);
 void Adc_DisableDigitalInput(const Adc_ChannelType_e channels);
 void Adc_SetChannel(const Adc_ChannelType_e channel);
 uint16 Adc_Read10bit(void);

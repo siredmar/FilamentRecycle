@@ -68,6 +68,18 @@ void Dbg_ReadVariableInteger(uint8 str[], sint32 variable)
 #endif
 }
 
+void Dbg_ReadVariableIntegerUnsigned(uint8 str[], uint32 variable)
+{
+#ifdef DBG_ENABLE
+    uint8 string[30];
+    sprintf(string, "%10ld", (uint32)variable);
+    //itoa(variable, string, 10);
+    Uart_WriteString(UART_HWUNIT_0, str);
+    Uart_WriteString(UART_HWUNIT_0, string);
+    Uart_WriteString(UART_HWUNIT_0, "\n\r");
+#endif
+}
+
 void Dbg_ReadVariableFloat(uint8 str[], float32 variable)
 {
 #ifdef DBG_ENABLE

@@ -12,5 +12,6 @@
 void Dbg_ReadRegister(uint8 UartHwUnit, uint8 str[], uint8 address);
 
 void Dbg_ReadVariableInteger(uint8 str[], sint32 variable);
+void Dbg_ReadVariableIntegerUnsigned(uint8 str[], uint32 variable);
 void Dbg_ReadVariableFloat(uint8 str[], float32 variable);
 #endif /* SRC_DBG_DBG_H_ */
