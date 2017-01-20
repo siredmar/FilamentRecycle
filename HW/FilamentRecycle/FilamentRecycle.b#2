@@ -464,6 +464,30 @@
 <rectangle x1="-4.064" y1="-0.254" x2="-3.556" y2="0.254" layer="51"/>
 <rectangle x1="3.556" y1="-0.254" x2="4.064" y2="0.254" layer="51"/>
 </package>
+<package name="1X02">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<wire x1="-1.905" y1="1.27" x2="-0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="0" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="-0.635" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="-0.635" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="-1.27" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="0" y2="-0.635" width="0.1524" layer="21"/>
+<pad name="1" x="-1.27" y="0" drill="1.016" shape="long" rot="R90"/>
+<pad name="2" x="1.27" y="0" drill="1.016" shape="long" rot="R90"/>
+<text x="-2.6162" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
+<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
+</package>
 </packages>
 </library>
 <library name="con-berg">
@@ -1850,6 +1874,8 @@ design rules under a new name.</description>
 <element name="JP2" library="pinhead" package="1X04" value="" x="6" y="-124"/>
 <element name="R5" library="rcl" package="R0603" value="390R" x="2" y="-129"/>
 <element name="R6" library="rcl" package="R0603" value="1k" x="2" y="-134"/>
+<element name="JP3" library="pinhead" package="1X02" value="" x="4" y="-140"/>
+<element name="R7" library="rcl" package="R0603" value="10k" x="2" y="-145"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -1881,6 +1907,8 @@ design rules under a new name.</description>
 <contactref element="Q3" pad="2"/>
 <contactref element="JP2" pad="4"/>
 <contactref element="R5" pad="1"/>
+<contactref element="JP3" pad="2"/>
+<wire x1="1.15" y1="-129" x2="5.27" y2="-140" width="0" layer="19" extent="1-1"/>
 <wire x1="9.81" y1="-124" x2="1.15" y2="-129" width="0" layer="19" extent="1-1"/>
 <wire x1="3.95" y1="-98.1" x2="9.81" y2="-124" width="0" layer="19" extent="1-1"/>
 <wire x1="3.95" y1="-90.1" x2="3.95" y2="-98.1" width="0" layer="19" extent="1-1"/>
@@ -1937,6 +1965,8 @@ design rules under a new name.</description>
 <contactref element="R3" pad="2"/>
 <contactref element="R4" pad="2"/>
 <contactref element="R6" pad="2"/>
+<contactref element="R7" pad="1"/>
+<wire x1="2.85" y1="-134" x2="1.15" y2="-145" width="0" layer="19" extent="1-1"/>
 <wire x1="2.85" y1="-118" x2="2.85" y2="-134" width="0" layer="19" extent="1-1"/>
 <wire x1="2.85" y1="-113" x2="2.85" y2="-118" width="0" layer="19" extent="1-1"/>
 <wire x1="2.85" y1="-71" x2="2.85" y2="-113" width="0" layer="19" extent="1-1"/>
@@ -2018,16 +2048,16 @@ design rules under a new name.</description>
 <signal name="CALIPER_CLK_3V3">
 <contactref element="Q2" pad="3"/>
 <contactref element="R3" pad="1"/>
-<contactref element="IC1" pad="32"/>
+<contactref element="IC1" pad="12"/>
 <wire x1="3" y1="-87.9" x2="1.15" y2="-113" width="0" layer="19" extent="1-1"/>
-<wire x1="3.2" y1="-2.7074" x2="3" y2="-87.9" width="0" layer="19" extent="1-1"/>
+<wire x1="5.6" y1="-11.2926" x2="3" y2="-87.9" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CALIPER_DAT_3V3">
 <contactref element="Q3" pad="3"/>
 <contactref element="R4" pad="1"/>
-<contactref element="IC1" pad="2"/>
+<contactref element="IC1" pad="13"/>
 <wire x1="3" y1="-95.9" x2="1.15" y2="-118" width="0" layer="19" extent="1-1"/>
-<wire x1="1.7074" y1="-5" x2="3" y2="-95.9" width="0" layer="19" extent="1-1"/>
+<wire x1="6.4" y1="-11.2926" x2="3" y2="-95.9" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CALIPER_DAT_1V5">
 <contactref element="R2" pad="1"/>
@@ -2055,6 +2085,13 @@ design rules under a new name.</description>
 <contactref element="JP2" pad="1"/>
 <wire x1="2.85" y1="-129" x2="1.15" y2="-134" width="0" layer="19" extent="1-1"/>
 <wire x1="2.19" y1="-124" x2="2.85" y2="-129" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="NTC_SIG">
+<contactref element="IC1" pad="23"/>
+<contactref element="JP3" pad="1"/>
+<contactref element="R7" pad="2"/>
+<wire x1="2.73" y1="-140" x2="2.85" y2="-145" width="0" layer="19" extent="1-1"/>
+<wire x1="10.2926" y1="-5" x2="2.73" y2="-140" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

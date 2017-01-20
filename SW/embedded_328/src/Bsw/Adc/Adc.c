@@ -38,38 +38,35 @@
 /* ------------------------------------ PRIVATE VARIABLES --------------------------------------- */
 
 static Adc_ConfigType  *AdcConfig;
+static Adc_DataType     Adc_Data_s;
 
 static volatile const Adc_RegisterAddressType Adc_RegisterAdresses_as =
 {
-        (uint8*) ADC_ADCL_ADDRESS,
-        (uint8*) ADC_ADCH_ADDRESS,
-        (uint8*) ADC_ADCSRA_ADDRESS,
-        (uint8*) ADC_ADCSRB_ADDRESS,
-        (uint8*) ADC_ADMUX_ADDRESS,
-        (uint8*) ADC_DIDR0_ADDRESS
+        (uint8*)  ADC_ADCL_ADDRESS,
+        (uint8*)  ADC_ADCH_ADDRESS,
+        (uint16*) ADC_ADCW_ADDRESS,
+        (uint8*)  ADC_ADCSRA_ADDRESS,
+        (uint8*)  ADC_ADCSRB_ADDRESS,
+        (uint8*)  ADC_ADMUX_ADDRESS,
+        (uint8*)  ADC_DIDR0_ADDRESS
 };
 
 
 /* ------------------------------------ PROTOTYPES ---------------------------------------------- */
-static uint16 Adc_GetResult8bit(void);
-static uint16 Adc_GetResult10bit(void);
-
-
 /* ------------------------------------ GLOBAL FUNCTIONS ---------------------------------------- */
 
 void Adc_Init(void)
 {
-    AdcConfig = (const Adc_ConfigType*)Adc_GetLcfgData();
+    uint8 ChannelCnt = 0;
 
-//    AdcConfig->enableState_e         = (Adc_EnableStateType_e)         (0x01 & configPtr->enableState_e);
-//    AdcConfig->interruptState_e      = (Adc_InterruptStateType_e)      (0x01 & configPtr->interruptState_e);
-//    AdcConfig->prescalerControl_e    = (Adc_PrescalerType_e)           (0x07 & configPtr->prescalerControl_e);
-//    AdcConfig->triggerControl_e      = (Adc_TriggerType_e)                     configPtr->triggerControl_e;
-//    AdcConfig->referenceControl_e    = (Adc_ReferenceType_e)           (0x03 & configPtr->referenceControl_e);
-//    AdcConfig->defaultChannel_e      = (Adc_ChannelType_e)             (0x07 & configPtr->defaultChannel_e);
-//    AdcConfig->digitalInputDisable_e = (Adc_DigitalInputDisableType_e)         configPtr->digitalInputDisable_e;
-//    AdcConfig->callbackFunc_pv       = (Adc_CallbackType)                      configPtr->callbackFunc_pv;
-//    AdcConfig->averageControl_e      = (Adc_AverageType_e)             (0x07 & configPtr->averageControl_e);
+    Adc_Data_s.CurrentAdcChannel_e = 0;
+
+    for(ChannelCnt = 0; ChannelCnt < ADC_NUMBER_OF_CHANNELS; ChannelCnt++)
+    {
+        Adc_Data_s.CurrentAdcValue10Bit_ui16[ChannelCnt] = 0;
+    }
+
+    AdcConfig = (const Adc_ConfigType*)Adc_GetLcfgData();
 
     /* enable ADC and set prescaler */
     *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) = \
@@ -82,7 +79,6 @@ void Adc_Init(void)
             (AdcConfig->defaultChannel_e   << ADC_MUX0);
 
     /* wait for some ADC clock cycles to take the settings */
-    //_delay_ms(1);
 
 /* ---------------------------------------------------------------------------------------------- */
     /* dummy read out to discard the invalid first conversion value */
@@ -112,6 +108,7 @@ void Adc_DisableDigitalInput(const Adc_ChannelType_e channels)
 void Adc_SetChannel(const Adc_ChannelType_e channel)
 {
     uint8 autoTriggerFlag = 0;
+    Adc_Data_s.CurrentAdcChannel_e = channel;
 
     /* disable auto trigger if running */
     if (*(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) & (1 << ADC_ADATE))
@@ -138,8 +135,6 @@ void Adc_SetChannel(const Adc_ChannelType_e channel)
 
 uint8 Adc_Read8bit(void)
 {
-    uint16 result_ui16 = 0;
-
     /* start conversion */
     *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADSC);
 
@@ -147,7 +142,7 @@ uint8 Adc_Read8bit(void)
     {
         /* wait for end of conversion, fetch adc value and clear the flag */
         while (!(*(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) & (1 << ADC_ADIF)));
-        result_ui16 = Adc_GetResult8bit();
+        Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e] = (*(volatile uint16 *)(Adc_RegisterAdresses_as.Adc_DataRegisterWord_pui16)) & 0x3FF;
         *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADIF);
     }
     else
@@ -155,13 +150,11 @@ uint8 Adc_Read8bit(void)
         /* NOTE: interrupts and callback function must be configured correctly! */
     }
 
-    return (uint8)(result_ui16 >> 2);
+    return (uint8)(Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e] >> 2);
 }
 
 uint16 Adc_Read10bit(void)
 {
-    uint16 result_ui16 = 0;
-
     /* start conversion */
     *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADSC);
 
@@ -169,7 +162,7 @@ uint16 Adc_Read10bit(void)
     {
         /* wait for end of conversion, fetch adc value and clear the flag */
         while (!(*(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) & (1 << ADC_ADIF)));
-        result_ui16 = Adc_GetResult10bit();
+        Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e] = (*(volatile uint16 *)(Adc_RegisterAdresses_as.Adc_DataRegisterWord_pui16)) & 0x3FF;
         *(Adc_RegisterAdresses_as.Adc_ControlAndStatusRegisterA_pui8) |= (1 << ADC_ADIF);
     }
     else
@@ -177,7 +170,7 @@ uint16 Adc_Read10bit(void)
         /* NOTE: interrupts and callback function must be configured correctly! */
     }
 
-    return result_ui16;
+    return Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e];
 }
 
 uint16 Adc_Read8bitAverage(void)
@@ -195,7 +188,6 @@ uint16 Adc_Read8bitAverage(void)
    avResult_ui16 = (uint16) (avResult_ui16 >> averages_ui8);
 
    return avResult_ui16;
-//   return ((uint8)(avResult_ui16 & 0x00FF));
 }
 
 uint16 Adc_Read10bitAverage(void)
@@ -218,14 +210,14 @@ uint16 Adc_Read10bitAverage(void)
 
 /* ------------------------------------ PRIVATE FUNCTIONS --------------------------------------- */
 
-static uint16 Adc_GetResult8bit(void)
+uint8 Adc_GetResult8bit(void)
 {
-    return *(volatile uint16 *)(Adc_RegisterAdresses_as.Adc_DataRegisterLow_pui8);
+    return ((Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e] >> 2) & 0xFF);
 }
 
-static uint16 Adc_GetResult10bit(void)
+uint16 Adc_GetResult10bit(void)
 {
-    return *(volatile uint16 *)(Adc_RegisterAdresses_as.Adc_DataRegisterLow_pui8);
+    return Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e];
 }
 
 
@@ -235,11 +227,10 @@ ISR(ADC_vect)
 {
    uint16 adcResult_ui16 = 0;
 
-   adcResult_ui16 = Adc_GetResult10bit();
-
+   Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e] = (*(volatile uint16 *)(Adc_RegisterAdresses_as.Adc_DataRegisterWord_pui16)) & 0x3FF;
    if(AdcConfig->callbackFunc_pv != ADC_CALLBACK_NULL_PTR)
    {
-      AdcConfig->callbackFunc_pv(adcResult_ui16);
+      AdcConfig->callbackFunc_pv(Adc_Data_s.CurrentAdcValue10Bit_ui16[Adc_Data_s.CurrentAdcChannel_e]);
    }
    else
    {

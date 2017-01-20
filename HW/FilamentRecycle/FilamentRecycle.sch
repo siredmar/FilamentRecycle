@@ -5960,7 +5960,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
 <part name="JP3" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
-<part name="R7" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
+<part name="R7" library="rcl" deviceset="R-EU_" device="R0603" value="4k7"/>
 <part name="U$6" library="SchlegelAr_Master" deviceset="+5V" device=""/>
 </parts>
 <sheets>
@@ -5971,25 +5971,25 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="180.34" y1="121.92" x2="180.34" y2="7.62" width="0.1524" layer="94" style="longdash"/>
 <wire x1="180.34" y1="7.62" x2="2.54" y2="7.62" width="0.1524" layer="94" style="longdash"/>
 <wire x1="2.54" y1="7.62" x2="2.54" y2="121.92" width="0.1524" layer="94" style="longdash"/>
-<text x="177.8" y="200.66" size="3.81" layer="94">AVR ISP connector</text>
+<text x="185.42" y="200.66" size="3.81" layer="94">AVR ISP connector</text>
 <text x="106.68" y="200.66" size="1.27" layer="91">In the standard case JP1 and JP2 is connected via jumpers.
 When not connecting the jumpers this gives the 
 opportunity to get into the Serial line for another 
 ECU e.g. control pendant</text>
 <text x="33.02" y="200.66" size="3.81" layer="94">USB and power Supply</text>
-<wire x1="2.54" y1="208.28" x2="172.72" y2="208.28" width="0.1524" layer="94" style="longdash"/>
-<wire x1="172.72" y1="208.28" x2="172.72" y2="124.46" width="0.1524" layer="94" style="longdash"/>
-<wire x1="172.72" y1="124.46" x2="2.54" y2="124.46" width="0.1524" layer="94" style="longdash"/>
+<wire x1="2.54" y1="208.28" x2="180.34" y2="208.28" width="0.1524" layer="94" style="longdash"/>
+<wire x1="180.34" y1="208.28" x2="180.34" y2="124.46" width="0.1524" layer="94" style="longdash"/>
+<wire x1="180.34" y1="124.46" x2="2.54" y2="124.46" width="0.1524" layer="94" style="longdash"/>
 <wire x1="2.54" y1="124.46" x2="2.54" y2="208.28" width="0.1524" layer="94" style="longdash"/>
-<wire x1="175.26" y1="208.28" x2="238.76" y2="208.28" width="0.1524" layer="94" style="longdash"/>
-<wire x1="238.76" y1="208.28" x2="238.76" y2="154.94" width="0.1524" layer="94" style="longdash"/>
-<wire x1="238.76" y1="154.94" x2="175.26" y2="154.94" width="0.1524" layer="94" style="longdash"/>
-<wire x1="175.26" y1="154.94" x2="175.26" y2="208.28" width="0.1524" layer="94" style="longdash"/>
-<wire x1="284.48" y1="149.86" x2="182.88" y2="149.86" width="0.1524" layer="94" style="longdash"/>
-<wire x1="182.88" y1="81.28" x2="284.48" y2="81.28" width="0.1524" layer="94" style="longdash"/>
-<wire x1="182.88" y1="149.86" x2="182.88" y2="81.28" width="0.1524" layer="94" style="longdash"/>
-<wire x1="284.48" y1="149.86" x2="284.48" y2="81.28" width="0.1524" layer="94" style="longdash"/>
-<text x="218.44" y="142.24" size="3.81" layer="94">CALIPER</text>
+<wire x1="182.88" y1="208.28" x2="246.38" y2="208.28" width="0.1524" layer="94" style="longdash"/>
+<wire x1="246.38" y1="208.28" x2="246.38" y2="154.94" width="0.1524" layer="94" style="longdash"/>
+<wire x1="246.38" y1="154.94" x2="182.88" y2="154.94" width="0.1524" layer="94" style="longdash"/>
+<wire x1="182.88" y1="154.94" x2="182.88" y2="208.28" width="0.1524" layer="94" style="longdash"/>
+<wire x1="284.48" y1="152.4" x2="182.88" y2="152.4" width="0.1524" layer="94" style="longdash"/>
+<wire x1="182.88" y1="83.82" x2="284.48" y2="83.82" width="0.1524" layer="94" style="longdash"/>
+<wire x1="182.88" y1="152.4" x2="182.88" y2="83.82" width="0.1524" layer="94" style="longdash"/>
+<wire x1="284.48" y1="152.4" x2="284.48" y2="83.82" width="0.1524" layer="94" style="longdash"/>
+<text x="218.44" y="144.78" size="3.81" layer="94">CALIPER</text>
 </plain>
 <instances>
 <instance part="IC1" gate="G$1" x="116.84" y="60.96"/>
@@ -6009,9 +6009,9 @@ ECU e.g. control pendant</text>
 <instance part="U$10" gate="G$1" x="63.5" y="50.8"/>
 <instance part="R11" gate="G$1" x="68.58" y="99.06" rot="R90"/>
 <instance part="U$15" gate="G$1" x="68.58" y="104.14"/>
-<instance part="CON5" gate="G$1" x="213.36" y="177.8"/>
+<instance part="CON5" gate="G$1" x="220.98" y="177.8"/>
 <instance part="U$28" gate="G$1" x="20.32" y="172.72"/>
-<instance part="U$29" gate="G$1" x="200.66" y="165.1"/>
+<instance part="U$29" gate="G$1" x="208.28" y="165.1"/>
 <instance part="IC7" gate="G$1" x="88.9" y="167.64"/>
 <instance part="GND7" gate="1" x="60.96" y="137.16"/>
 <instance part="GND8" gate="1" x="106.68" y="137.16"/>
@@ -6019,7 +6019,7 @@ ECU e.g. control pendant</text>
 <instance part="GND2" gate="1" x="73.66" y="137.16"/>
 <instance part="C12" gate="G$1" x="71.12" y="177.8" rot="R270"/>
 <instance part="GND3" gate="1" x="71.12" y="170.18"/>
-<instance part="U$17" gate="G$1" x="182.88" y="193.04"/>
+<instance part="U$17" gate="G$1" x="190.5" y="193.04"/>
 <instance part="U$1" gate="G$1" x="22.86" y="195.58"/>
 <instance part="U$2" gate="G$1" x="66.04" y="195.58"/>
 <instance part="GND1" gate="1" x="114.3" y="175.26"/>
@@ -6034,26 +6034,26 @@ ECU e.g. control pendant</text>
 <instance part="C9" gate="G$1" x="129.54" y="144.78" rot="R90"/>
 <instance part="GND17" gate="1" x="129.54" y="137.16"/>
 <instance part="X6" gate="G$1" x="27.94" y="185.42"/>
-<instance part="GND11" gate="1" x="198.12" y="104.14"/>
-<instance part="Q2" gate="G$1" x="236.22" y="114.3"/>
-<instance part="Q3" gate="G$1" x="254" y="99.06"/>
-<instance part="R1" gate="G$1" x="226.06" y="114.3"/>
-<instance part="R2" gate="G$1" x="226.06" y="104.14"/>
-<instance part="R3" gate="G$1" x="238.76" y="129.54" rot="R90"/>
-<instance part="GND12" gate="1" x="238.76" y="88.9"/>
-<instance part="GND13" gate="1" x="256.54" y="88.9"/>
-<instance part="R4" gate="G$1" x="256.54" y="129.54" rot="R90"/>
-<instance part="U$3" gate="G$1" x="238.76" y="137.16"/>
-<instance part="U$4" gate="G$1" x="256.54" y="137.16"/>
-<instance part="JP2" gate="A" x="187.96" y="111.76" rot="MR0"/>
-<instance part="R5" gate="G$1" x="210.82" y="129.54" rot="R90"/>
-<instance part="R6" gate="G$1" x="210.82" y="139.7" rot="R90"/>
-<instance part="U$5" gate="G$1" x="210.82" y="144.78"/>
-<instance part="GND14" gate="1" x="210.82" y="121.92"/>
-<instance part="JP3" gate="G$1" x="187.96" y="48.26" rot="MR0"/>
-<instance part="GND15" gate="1" x="198.12" y="40.64"/>
-<instance part="R7" gate="G$1" x="198.12" y="60.96" rot="R270"/>
-<instance part="U$6" gate="G$1" x="198.12" y="68.58"/>
+<instance part="GND11" gate="1" x="198.12" y="106.68"/>
+<instance part="Q2" gate="G$1" x="236.22" y="116.84"/>
+<instance part="Q3" gate="G$1" x="254" y="101.6"/>
+<instance part="R1" gate="G$1" x="226.06" y="116.84"/>
+<instance part="R2" gate="G$1" x="226.06" y="106.68"/>
+<instance part="R3" gate="G$1" x="238.76" y="132.08" rot="R90"/>
+<instance part="GND12" gate="1" x="238.76" y="91.44"/>
+<instance part="GND13" gate="1" x="256.54" y="91.44"/>
+<instance part="R4" gate="G$1" x="256.54" y="132.08" rot="R90"/>
+<instance part="U$3" gate="G$1" x="238.76" y="139.7"/>
+<instance part="U$4" gate="G$1" x="256.54" y="139.7"/>
+<instance part="JP2" gate="A" x="187.96" y="114.3" rot="MR0"/>
+<instance part="R5" gate="G$1" x="210.82" y="132.08" rot="R90"/>
+<instance part="R6" gate="G$1" x="210.82" y="142.24" rot="R90"/>
+<instance part="U$5" gate="G$1" x="210.82" y="147.32"/>
+<instance part="GND14" gate="1" x="210.82" y="124.46"/>
+<instance part="JP3" gate="G$1" x="187.96" y="50.8" rot="MR0"/>
+<instance part="GND15" gate="1" x="198.12" y="43.18"/>
+<instance part="R7" gate="G$1" x="198.12" y="63.5" rot="R270"/>
+<instance part="U$6" gate="G$1" x="198.12" y="71.12"/>
 </instances>
 <busses>
 </busses>
@@ -6113,16 +6113,16 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="CON5" gate="G$1" pin="GND@2"/>
 <pinref part="U$29" gate="G$1" pin="GND"/>
-<wire x1="205.74" y1="167.64" x2="200.66" y2="167.64" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="167.64" x2="200.66" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="170.18" x2="200.66" y2="167.64" width="0.1524" layer="91"/>
-<junction x="200.66" y="167.64"/>
+<wire x1="213.36" y1="167.64" x2="208.28" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="167.64" x2="208.28" y2="165.1" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="170.18" x2="208.28" y2="167.64" width="0.1524" layer="91"/>
+<junction x="208.28" y="167.64"/>
 <pinref part="CON5" gate="G$1" pin="GND@1"/>
-<wire x1="205.74" y1="170.18" x2="200.66" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="170.18" x2="208.28" y2="170.18" width="0.1524" layer="91"/>
 <pinref part="CON5" gate="G$1" pin="GND"/>
-<wire x1="205.74" y1="175.26" x2="200.66" y2="175.26" width="0.1524" layer="91"/>
-<wire x1="200.66" y1="175.26" x2="200.66" y2="170.18" width="0.1524" layer="91"/>
-<junction x="200.66" y="170.18"/>
+<wire x1="213.36" y1="175.26" x2="208.28" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="175.26" x2="208.28" y2="170.18" width="0.1524" layer="91"/>
+<junction x="208.28" y="170.18"/>
 </segment>
 <segment>
 <wire x1="60.96" y1="139.7" x2="60.96" y2="162.56" width="0.1524" layer="91"/>
@@ -6181,20 +6181,20 @@ ECU e.g. control pendant</text>
 <wire x1="129.54" y1="142.24" x2="129.54" y2="139.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="190.5" y1="109.22" x2="198.12" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="109.22" x2="198.12" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="111.76" x2="198.12" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="111.76" x2="198.12" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="GND11" gate="1" pin="GND"/>
 <pinref part="JP2" gate="A" pin="4"/>
 </segment>
 <segment>
 <pinref part="Q2" gate="G$1" pin="E"/>
 <pinref part="GND12" gate="1" pin="GND"/>
-<wire x1="238.76" y1="91.44" x2="238.76" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="93.98" x2="238.76" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="Q3" gate="G$1" pin="E"/>
 <pinref part="GND13" gate="1" pin="GND"/>
-<wire x1="256.54" y1="91.44" x2="256.54" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="256.54" y1="93.98" x2="256.54" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R5" gate="G$1" pin="1"/>
@@ -6203,8 +6203,8 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="JP3" gate="G$1" pin="2"/>
 <pinref part="GND15" gate="1" pin="GND"/>
-<wire x1="190.5" y1="48.26" x2="198.12" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="48.26" x2="198.12" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="50.8" x2="198.12" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="50.8" x2="198.12" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="!RESET" class="0">
@@ -6218,8 +6218,8 @@ ECU e.g. control pendant</text>
 </segment>
 <segment>
 <pinref part="CON5" gate="G$1" pin="RESET"/>
-<wire x1="205.74" y1="182.88" x2="203.2" y2="182.88" width="0.1524" layer="91"/>
-<label x="203.2" y="182.88" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="182.88" x2="210.82" y2="182.88" width="0.1524" layer="91"/>
+<label x="210.82" y="182.88" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -6257,8 +6257,8 @@ ECU e.g. control pendant</text>
 </segment>
 <segment>
 <pinref part="CON5" gate="G$1" pin="VCC"/>
-<wire x1="205.74" y1="177.8" x2="182.88" y2="177.8" width="0.1524" layer="91"/>
-<wire x1="182.88" y1="177.8" x2="182.88" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="177.8" x2="190.5" y2="177.8" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="177.8" x2="190.5" y2="193.04" width="0.1524" layer="91"/>
 <pinref part="U$17" gate="G$1" pin="+5V"/>
 </segment>
 <segment>
@@ -6310,12 +6310,12 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="R3" gate="G$1" pin="2"/>
 <pinref part="U$3" gate="G$1" pin="+5V"/>
-<wire x1="238.76" y1="137.16" x2="238.76" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="139.7" x2="238.76" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R4" gate="G$1" pin="2"/>
 <pinref part="U$4" gate="G$1" pin="+5V"/>
-<wire x1="256.54" y1="137.16" x2="256.54" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="256.54" y1="139.7" x2="256.54" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R6" gate="G$1" pin="2"/>
@@ -6324,7 +6324,7 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="R7" gate="G$1" pin="1"/>
 <pinref part="U$6" gate="G$1" pin="+5V"/>
-<wire x1="198.12" y1="68.58" x2="198.12" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="71.12" x2="198.12" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="FTDI_TXD" class="0">
@@ -6375,25 +6375,40 @@ ECU e.g. control pendant</text>
 <junction x="38.1" y="71.12"/>
 </segment>
 </net>
-<net name="SPINDLE_ENABLE" class="0">
+<net name="MISO" class="0">
 <segment>
 <pinref part="CON5" gate="G$1" pin="MISO"/>
-<wire x1="205.74" y1="185.42" x2="203.2" y2="185.42" width="0.1524" layer="91"/>
-<label x="203.2" y="185.42" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="185.42" x2="210.82" y2="185.42" width="0.1524" layer="91"/>
+<label x="210.82" y="185.42" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="PB4(MISO/PCINT4)"/>
+<wire x1="83.82" y1="66.04" x2="81.28" y2="66.04" width="0.1524" layer="91"/>
+<label x="81.28" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SCK" class="0">
 <segment>
 <pinref part="CON5" gate="G$1" pin="SCK"/>
-<wire x1="205.74" y1="180.34" x2="203.2" y2="180.34" width="0.1524" layer="91"/>
-<label x="203.2" y="180.34" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="180.34" x2="210.82" y2="180.34" width="0.1524" layer="91"/>
+<label x="210.82" y="180.34" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="PB5(SCK/PCINT5)"/>
+<wire x1="83.82" y1="68.58" x2="81.28" y2="68.58" width="0.1524" layer="91"/>
+<label x="81.28" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="MOSI" class="0">
 <segment>
 <pinref part="CON5" gate="G$1" pin="MOSI"/>
-<wire x1="205.74" y1="187.96" x2="203.2" y2="187.96" width="0.1524" layer="91"/>
-<label x="203.2" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="187.96" x2="210.82" y2="187.96" width="0.1524" layer="91"/>
+<label x="210.82" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="PB3(MOSI/OC2A/PCINT3)"/>
+<wire x1="83.82" y1="63.5" x2="81.28" y2="63.5" width="0.1524" layer="91"/>
+<label x="81.28" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="USB_D-" class="0">
@@ -6450,11 +6465,11 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="Q2" gate="G$1" pin="C"/>
 <pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="238.76" y1="127" x2="238.76" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="238.76" y1="124.46" x2="238.76" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="238.76" y1="121.92" x2="238.76" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="238.76" y1="121.92" x2="259.08" y2="121.92" width="0.1524" layer="91"/>
-<junction x="238.76" y="121.92"/>
-<label x="259.08" y="121.92" size="1.27" layer="95" xref="yes"/>
+<wire x1="238.76" y1="124.46" x2="259.08" y2="124.46" width="0.1524" layer="91"/>
+<junction x="238.76" y="124.46"/>
+<label x="259.08" y="124.46" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="CALIPER_DAT_3V3" class="0">
@@ -6466,28 +6481,28 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="Q3" gate="G$1" pin="C"/>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="256.54" y1="124.46" x2="256.54" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="256.54" y1="119.38" x2="256.54" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="256.54" y1="119.38" x2="259.08" y2="119.38" width="0.1524" layer="91"/>
-<junction x="256.54" y="119.38"/>
-<label x="259.08" y="119.38" size="1.27" layer="95" xref="yes"/>
+<wire x1="256.54" y1="127" x2="256.54" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="256.54" y1="121.92" x2="256.54" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="256.54" y1="121.92" x2="259.08" y2="121.92" width="0.1524" layer="91"/>
+<junction x="256.54" y="121.92"/>
+<label x="259.08" y="121.92" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="CALIPER_DAT_1V5" class="0">
 <segment>
-<wire x1="190.5" y1="111.76" x2="218.44" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="111.76" x2="218.44" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="104.14" x2="220.98" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="114.3" x2="218.44" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="114.3" x2="218.44" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="106.68" x2="220.98" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="1"/>
-<label x="195.58" y="111.76" size="1.27" layer="95"/>
+<label x="195.58" y="114.3" size="1.27" layer="95"/>
 <pinref part="JP2" gate="A" pin="3"/>
 </segment>
 </net>
 <net name="CALIPER_CLK_1V5" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="190.5" y1="114.3" x2="220.98" y2="114.3" width="0.1524" layer="91"/>
-<label x="195.58" y="114.3" size="1.27" layer="95"/>
+<wire x1="190.5" y1="116.84" x2="220.98" y2="116.84" width="0.1524" layer="91"/>
+<label x="195.58" y="116.84" size="1.27" layer="95"/>
 <pinref part="JP2" gate="A" pin="2"/>
 </segment>
 </net>
@@ -6495,29 +6510,28 @@ ECU e.g. control pendant</text>
 <segment>
 <pinref part="Q2" gate="G$1" pin="B"/>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="233.68" y1="114.3" x2="231.14" y2="114.3" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="114.3" x2="231.14" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="116.84" x2="231.14" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <pinref part="Q3" gate="G$1" pin="B"/>
-<wire x1="231.14" y1="104.14" x2="233.68" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="104.14" x2="233.68" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="99.06" x2="251.46" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="106.68" x2="233.68" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="106.68" x2="233.68" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="101.6" x2="251.46" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CALIPER_SUPPLY" class="0">
 <segment>
 <pinref part="R5" gate="G$1" pin="2"/>
 <pinref part="R6" gate="G$1" pin="1"/>
-<wire x1="210.82" y1="134.62" x2="195.58" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="195.58" y1="134.62" x2="195.58" y2="116.84" width="0.1524" layer="91"/>
-<junction x="210.82" y="134.62"/>
+<wire x1="210.82" y1="137.16" x2="195.58" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="195.58" y1="137.16" x2="195.58" y2="119.38" width="0.1524" layer="91"/>
+<junction x="210.82" y="137.16"/>
 <pinref part="JP2" gate="A" pin="1"/>
-<wire x1="195.58" y1="116.84" x2="190.5" y2="116.84" width="0.1524" layer="91"/>
-<label x="185.42" y="134.62" size="1.778" layer="95"/>
+<wire x1="195.58" y1="119.38" x2="190.5" y2="119.38" width="0.1524" layer="91"/>
+<label x="185.42" y="137.16" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="NTC_SIG" class="0">
@@ -6528,12 +6542,12 @@ ECU e.g. control pendant</text>
 </segment>
 <segment>
 <pinref part="JP3" gate="G$1" pin="1"/>
-<wire x1="190.5" y1="50.8" x2="198.12" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="53.34" x2="198.12" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="R7" gate="G$1" pin="2"/>
-<wire x1="198.12" y1="50.8" x2="198.12" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="50.8" x2="200.66" y2="50.8" width="0.1524" layer="91"/>
-<junction x="198.12" y="50.8"/>
-<label x="200.66" y="50.8" size="1.27" layer="95" xref="yes"/>
+<wire x1="198.12" y1="53.34" x2="198.12" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="53.34" x2="200.66" y2="53.34" width="0.1524" layer="91"/>
+<junction x="198.12" y="53.34"/>
+<label x="200.66" y="53.34" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>

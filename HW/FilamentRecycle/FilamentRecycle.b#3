@@ -1984,24 +1984,6 @@ design rules under a new name.</description>
 <signal name="SPINDLE_ENABLE">
 <contactref element="CON5" pad="2"/>
 </signal>
-<signal name="Z_DIR">
-<contactref element="IC1" pad="11"/>
-</signal>
-<signal name="Y_DIR">
-<contactref element="IC1" pad="10"/>
-</signal>
-<signal name="X_DIR">
-<contactref element="IC1" pad="9"/>
-</signal>
-<signal name="Z_STEP">
-<contactref element="IC1" pad="2"/>
-</signal>
-<signal name="Y_STEP">
-<contactref element="IC1" pad="1"/>
-</signal>
-<signal name="X_STEP">
-<contactref element="IC1" pad="32"/>
-</signal>
 <signal name="SCK">
 <contactref element="CON5" pad="4"/>
 </signal>

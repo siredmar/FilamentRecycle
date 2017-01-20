@@ -1875,7 +1875,7 @@ design rules under a new name.</description>
 <element name="R5" library="rcl" package="R0603" value="390R" x="2" y="-129"/>
 <element name="R6" library="rcl" package="R0603" value="1k" x="2" y="-134"/>
 <element name="JP3" library="pinhead" package="1X02" value="" x="4" y="-140"/>
-<element name="R7" library="rcl" package="R0603" value="10k" x="2" y="-145"/>
+<element name="R7" library="rcl" package="R0603" value="4k7" x="2" y="-145"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -2011,14 +2011,20 @@ design rules under a new name.</description>
 <wire x1="12.826" y1="-17" x2="11.15" y2="-30" width="0" layer="19" extent="1-1"/>
 <wire x1="1.7074" y1="-9" x2="12.826" y2="-17" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="SPINDLE_ENABLE">
+<signal name="MISO">
 <contactref element="CON5" pad="2"/>
+<contactref element="IC1" pad="16"/>
+<wire x1="8.8" y1="-11.2926" x2="5.125" y2="-61.45" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCK">
 <contactref element="CON5" pad="4"/>
+<contactref element="IC1" pad="17"/>
+<wire x1="10.2926" y1="-9.8" x2="7.625" y2="-61.45" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MOSI">
 <contactref element="CON5" pad="1"/>
+<contactref element="IC1" pad="15"/>
+<wire x1="8" y1="-11.2926" x2="3.875" y2="-61.45" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="USB_D-">
 <contactref element="X6" pad="2"/>

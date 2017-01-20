@@ -27,6 +27,7 @@
 /* register addresses */
 #define ADC_ADCL_ADDRESS    ((uint8)0x78)
 #define ADC_ADCH_ADDRESS    ((uint8)0x79)
+#define ADC_ADCW_ADDRESS    ((uint8)0x78)
 #define ADC_ADCSRA_ADDRESS  ((uint8)0x7A)
 #define ADC_ADCSRB_ADDRESS  ((uint8)0x7B)
 #define ADC_ADMUX_ADDRESS   ((uint8)0x7C)

@@ -159,10 +159,10 @@ void EcuM_Handler(void)
 
     if(Flag500ms)
     {
-        SoftTimer_Start(&Timer);
-        Caliper_Handler();
-        Dbg_ReadVariableInteger("Time usage [ms]: ", SoftTimer_GetElapsedMs(&Timer));
-        Caliper_PrintOutput();
+//        SoftTimer_Start(&Timer);
+//        Caliper_Handler();
+//        Dbg_ReadVariableInteger("Time usage [ms]: ", SoftTimer_GetElapsedMs(&Timer));
+//        Caliper_PrintOutput();
         Heating_Handler();
         Flag500ms = 0;
 

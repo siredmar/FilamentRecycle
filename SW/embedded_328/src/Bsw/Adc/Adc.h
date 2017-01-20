@@ -59,7 +59,8 @@ typedef enum
     ADC_CHANNEL_4,
     ADC_CHANNEL_5,
     ADC_CHANNEL_6,
-    ADC_CHANNEL_7
+    ADC_CHANNEL_7,
+    ADC_NUMBER_OF_CHANNELS
 }Adc_ChannelType_e;
 
 typedef enum
@@ -139,14 +140,20 @@ typedef struct
 
 typedef struct
 {
-    uint8* Adc_DataRegisterLow_pui8;
-    uint8* Adc_DataRegisterHigh_pui8;
-    uint8* Adc_ControlAndStatusRegisterA_pui8;
-    uint8* Adc_ControlAndStatusRegisterB_pui8;
-    uint8* Adc_MuxRegister_pui8;
-    uint8* Adc_DigitalInputDisableRegister_pui8;
+    uint8*  Adc_DataRegisterLow_pui8;
+    uint8*  Adc_DataRegisterHigh_pui8;
+    uint16* Adc_DataRegisterWord_pui16;
+    uint8*  Adc_ControlAndStatusRegisterA_pui8;
+    uint8*  Adc_ControlAndStatusRegisterB_pui8;
+    uint8*  Adc_MuxRegister_pui8;
+    uint8*  Adc_DigitalInputDisableRegister_pui8;
 } Adc_RegisterAddressType;
 
+typedef struct
+{
+    Adc_ChannelType_e   CurrentAdcChannel_e;
+    uint16              CurrentAdcValue10Bit_ui16[ADC_NUMBER_OF_CHANNELS];
+} Adc_DataType;
 
 /* ------------------------------------ GLOBAL VARIABLES ---------------------------------------- */
 
@@ -160,6 +167,9 @@ uint16 Adc_Read10bit(void);
 uint16 Adc_Read10bitAverage(void);
 uint8 Adc_Read8bit(void);
 uint16 Adc_Read8bitAverage(void);
+uint8 Adc_GetResult8bit(void);
+uint16 Adc_GetResult10bit(void);
 
 /* ************************************ E O F *************************************************** */
 #endif /* _ADC_H_ */
+

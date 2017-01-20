@@ -23,5 +23,6 @@ void Heating_OutputValue(void);
 
 void Heating_SetTemperature(float32 Temp_f32);
 float32 Heating_GetTemperature(void);
+float32 Adc2Celsius(uint16 raw);
 
 #endif /* HEATING_H_ */
