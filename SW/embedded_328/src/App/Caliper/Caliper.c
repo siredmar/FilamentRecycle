@@ -54,7 +54,7 @@ void Caliper_Handler(void)
 
 void Caliper_PrintOutput(void)
 {
-    Dbg_ReadVariableFloat("\r\nWidth [mm]:        ", Caliper_Data_s.Measurement.Result_f32);
+    Dbg_ReadVariableFloat("\r\nWidth [mm]:\t\t", Caliper_Data_s.Measurement.Result_f32);
 //    Dbg_ReadVariableInteger("Timestamp [ms]: ", Caliper_Data_s.Measurement.Timestamp_ui32);
 }
 
