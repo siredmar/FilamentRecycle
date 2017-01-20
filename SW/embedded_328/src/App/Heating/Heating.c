@@ -35,9 +35,9 @@ void Heating_Handler(void)
 
 void Heating_OutputValue(void)
 {
-    Dbg_ReadVariableIntegerUnsigned("Adc: ", (uint32)(Heating_Data_s.TemperatureAdcValue_ui16 & 0xFFFF));
-    Dbg_ReadVariableFloat("Res: ", Heating_Data_s.TemperatureResistorValue_f32);
-    Dbg_ReadVariableFloat("Cel: ", Heating_Data_s.ActualTemperature_f32);
+//    Dbg_ReadVariableIntegerUnsigned("Adc: ", (uint32)(Heating_Data_s.TemperatureAdcValue_ui16 & 0xFFFF));
+//    Dbg_ReadVariableFloat("Res: ", Heating_Data_s.TemperatureResistorValue_f32);
+    Dbg_ReadVariableFloat("   Temperature [C]: ", Heating_Data_s.ActualTemperature_f32);
 }
 
 void Heating_SetTemperature(float32 Temp_f32)
