@@ -7183,9 +7183,9 @@ stuff</text>
 </net>
 <net name="CALIPER_CLK_3V3" class="0">
 <segment>
-<label x="129.54" y="83.82" size="1.27" layer="95" xref="yes"/>
-<wire x1="127" y1="83.82" x2="129.54" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="(PCINT18/INT0)PD2"/>
+<label x="129.54" y="88.9" size="1.27" layer="95" xref="yes"/>
+<wire x1="127" y1="88.9" x2="129.54" y2="88.9" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="G$1" pin="(PCINT20/XCK/T0)PD4"/>
 </segment>
 </net>
 <net name="CALIPER_DAT_3V3" class="0">
