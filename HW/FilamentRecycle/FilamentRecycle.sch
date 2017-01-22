@@ -6742,6 +6742,9 @@ DIN A4, landscape with location and doc. field</description>
 <part name="JP8" library="pinhead" deviceset="PINHD-1X4" device=""/>
 <part name="GND25" library="supply1" deviceset="GND" device=""/>
 <part name="GND26" library="supply1" deviceset="GND" device=""/>
+<part name="P+3" library="supply1" deviceset="+5V" device=""/>
+<part name="GND27" library="supply1" deviceset="GND" device=""/>
+<part name="C3" library="SchlegelAr_Master" deviceset="C_SMD" device="0603" value="100n"/>
 </parts>
 <sheets>
 <sheet>
@@ -7216,21 +7219,14 @@ stuff</text>
 <pinref part="IC1" gate="G$1" pin="PC1(ADC1/PCINT9)"/>
 </segment>
 </net>
-<net name="DAC_MISO" class="0">
+<net name="DAC_RCK" class="0">
 <segment>
 <label x="50.8" y="86.36" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="58.42" y1="86.36" x2="50.8" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="PC2(ADC2/PCINT10)"/>
 </segment>
 </net>
-<net name="DAC_CLK" class="0">
-<segment>
-<label x="50.8" y="91.44" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="58.42" y1="91.44" x2="50.8" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="PC4(SDA/ADC4/PCINT12)"/>
-</segment>
-</net>
-<net name="DAC_SS" class="0">
+<net name="DAC_SCK" class="0">
 <segment>
 <label x="50.8" y="88.9" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="58.42" y1="88.9" x2="50.8" y2="88.9" width="0.1524" layer="91"/>
@@ -7469,6 +7465,10 @@ drivers</text>
 <instance part="JP8" gate="A" x="121.92" y="81.28"/>
 <instance part="GND25" gate="1" x="48.26" y="142.24" rot="R270"/>
 <instance part="GND26" gate="1" x="48.26" y="93.98" rot="R270"/>
+<instance part="IC2" gate="P" x="154.94" y="124.46"/>
+<instance part="P+3" gate="1" x="154.94" y="137.16"/>
+<instance part="GND27" gate="1" x="154.94" y="111.76"/>
+<instance part="C3" gate="G$1" x="149.86" y="121.92" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -7522,6 +7522,15 @@ drivers</text>
 <pinref part="GND26" gate="1" pin="GND"/>
 <wire x1="53.34" y1="93.98" x2="50.8" y2="93.98" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="IC2" gate="P" pin="GND"/>
+<pinref part="GND27" gate="1" pin="GND"/>
+<wire x1="154.94" y1="114.3" x2="154.94" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="P$1"/>
+<wire x1="149.86" y1="119.38" x2="149.86" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="116.84" x2="154.94" y2="116.84" width="0.1524" layer="91"/>
+<junction x="154.94" y="116.84"/>
+</segment>
 </net>
 <net name="+5V" class="0">
 <segment>
@@ -7568,6 +7577,15 @@ drivers</text>
 <wire x1="111.76" y1="76.2" x2="104.14" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="U$14" gate="G$1" pin="VDD"/>
 <pinref part="U$22" gate="G$1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="P" pin="VCC"/>
+<pinref part="P+3" gate="1" pin="+5V"/>
+<wire x1="154.94" y1="134.62" x2="154.94" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="P$2"/>
+<wire x1="149.86" y1="127" x2="149.86" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="132.08" x2="154.94" y2="132.08" width="0.1524" layer="91"/>
+<junction x="154.94" y="132.08"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -7925,25 +7943,18 @@ drivers</text>
 <label x="160.02" y="154.94" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="DAC_CLK" class="0">
+<net name="DAC_SCK" class="0">
 <segment>
 <pinref part="IC2" gate="A" pin="SCK"/>
 <wire x1="162.56" y1="149.86" x2="160.02" y2="149.86" width="0.1524" layer="91"/>
 <label x="160.02" y="149.86" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="DAC_SS" class="0">
+<net name="DAC_RCK" class="0">
 <segment>
 <pinref part="IC2" gate="A" pin="RCK"/>
 <wire x1="162.56" y1="142.24" x2="160.02" y2="142.24" width="0.1524" layer="91"/>
 <label x="160.02" y="142.24" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="DAC_MISO" class="0">
-<segment>
-<pinref part="IC2" gate="A" pin="G"/>
-<wire x1="162.56" y1="132.08" x2="160.02" y2="132.08" width="0.1524" layer="91"/>
-<label x="160.02" y="132.08" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

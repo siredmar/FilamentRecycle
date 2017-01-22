@@ -56,34 +56,34 @@ const Gpio_ConfigType Gpio_InitialConfiguration_s =
                 },
 
                 /* PORT C */
-                {       /* Display DC */
+                {       /* NTC Thermistor AD-Input */
                         GPIO_FALSE,
                         GPIO_CHANNEL_PC0,
-                        GPIO_OUTPUT,
+                        GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {       /* Display CS */
-                        GPIO_FALSE,
+                {       /* R2RDAC - HC595 MOSI */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PC1,
                         GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
-                        GPIO_FALSE,
+                {       /* R2RDAC - HC595 RCK */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PC2,
-                        GPIO_INPUT,
+                        GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
-                        GPIO_FALSE,
+                {       /* R2RDAC - HC595 SCK */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PC3,
-                        GPIO_INPUT,
+                        GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
                 {
                         GPIO_FALSE,
                         GPIO_CHANNEL_PC4,
-                        GPIO_INPUT,
+                        GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
                 {
@@ -112,37 +112,37 @@ const Gpio_ConfigType Gpio_InitialConfiguration_s =
                         GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {       /* Caliper CLK Pin - Interrupt INT0 */
-                        GPIO_TRUE,
+                {
+                        GPIO_FALSE,
                         GPIO_CHANNEL_PD2,
-                        GPIO_INPUT,
+                        GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
                 {
                         GPIO_FALSE,
                         GPIO_CHANNEL_PD3,
-                        GPIO_INPUT,
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_HIGH
+                },
+                {
+                        GPIO_FALSE,
+                        GPIO_CHANNEL_PD4,
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_HIGH
+                },
+                {
+                        GPIO_FALSE,
+                        GPIO_CHANNEL_PD5,
+                        GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
                 {       /* Caliper DAT Pin */
-                        GPIO_TRUE,
-                        GPIO_CHANNEL_PD4,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
-                },
-                {
-                        GPIO_TRUE,
-                        GPIO_CHANNEL_PD5,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
-                },
-                {
                         GPIO_TRUE,
                         GPIO_CHANNEL_PD6,
                         GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
+                {       /* Caliper CLK Pin */
                         GPIO_TRUE,
                         GPIO_CHANNEL_PD7,
                         GPIO_INPUT,

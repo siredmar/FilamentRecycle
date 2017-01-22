@@ -18,6 +18,7 @@ FORMAT = ihex
 TARGET = main
 
 SRC = src/$(TARGET).c
+
 SRC += src/Bsw/Uart/Uart.c
 SRC += src/Bsw/Uart/Uart_Lcfg.c
 SRC += src/Bsw/Gpio/Gpio.c
@@ -28,13 +29,16 @@ SRC += src/Bsw/Ecu/EcuM.c
 SRC += src/Bsw/Tools/Tools.c
 SRC += src/Bsw/Dbg/Dbg.c
 SRC += src/Bsw/Timer/Timer.c
-SRC += src/App/Caliper/Caliper.c
-SRC += src/App/Heating/Heating.c
+
+SRC += src/Hal/Caliper/Caliper.c
+SRC += src/Hal/Heating/Heating.c
+SRC += src/Hal/R2RDac/R2RDac.c
+SRC += src/Hal/HC595/HC595.c
 
 LIBSRC =
 
 INC = -I./inc -I./src/Bsw/Uart -I./src/Bsw/Adc -I./src/Bsw/Gpio -I./src/Bsw/Ecu -I./src/Bsw/Tools  -I./src/Bsw/Dbg -I./src/Bsw/Timer
-INC+= -I./src/App/Caliper -I./src/App/Heating
+INC+= -I./src/Hal/Caliper -I./src/Hal/Heating -I./src/Hal/R2RDac -I./src/Hal/HC595
 
 ASRC =
 OPT = s

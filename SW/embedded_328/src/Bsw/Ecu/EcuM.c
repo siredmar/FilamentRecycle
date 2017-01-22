@@ -12,6 +12,7 @@
 #include "Timer.h"
 #include "Caliper.h"
 #include "Heating.h"
+#include "R2RDac.h"
 #include "Dbg.h"
 
 #define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
@@ -104,6 +105,8 @@ static void EcuM_InitModules(void)
 
     Caliper_Init();
     Heating_Init();
+    R2RDac_Init();
+    HC595_Init();
 }
 
 static void EcuM_InitBaseTimer(void)
@@ -137,6 +140,7 @@ void EcuM_InitSystem(void)
 
 void EcuM_Handler(void)
 {
+    static float32 Percentage = 0.0;
     SoftTimer_DataType Timer;
 
     if(Flag1ms)
@@ -159,11 +163,21 @@ void EcuM_Handler(void)
 
     if(Flag500ms)
     {
-        Caliper_Handler();
-        Caliper_PrintOutput();
+//        Caliper_Handler();
+//        Caliper_PrintOutput();
         Heating_Handler();
-        Flag500ms = 0;
 
+        if(Percentage >= 100.0)
+        {
+            Percentage = 0.0;
+        }
+        else
+        {
+            Percentage += 10.0;
+        }
+        R2RDac_SetOutputPercentage(Percentage);
+
+        Flag500ms = 0;
     }
 
     if(Flag1000ms)
