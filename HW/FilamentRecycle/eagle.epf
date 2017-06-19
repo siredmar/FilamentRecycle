@@ -1,7 +1,7 @@
 [Eagle]
 Version="06 06 00"
 Platform="Linux"
-Serial="62191E841E-LSR-WLM-1EL"
+Serial="7103CB7036-LSR-WLM-1SS"
 Globals="Globals"
 Desktop="Desktop"
 
@@ -372,7 +372,7 @@ UsedLibrary="/data/programme/eagle-6.6.0/lbr/zx62d-b-5pa8-oshpark_10.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="0 0 599 399"
+Loc="0 61 729 810"
 State=2
 Number=0
 

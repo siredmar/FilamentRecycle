@@ -12,6 +12,9 @@
 #ifndef CALIPER_H_
 #define CALIPER_H_
 
+/* Selects whether caliper input pins are pure ADC pins used as GPIO inputs or real GPIO pins */
+#define CALIPER_PINS_ADC
+
 typedef struct
 {
     uint32 Timestamp_ui32;

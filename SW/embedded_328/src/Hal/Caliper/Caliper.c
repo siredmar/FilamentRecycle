@@ -14,9 +14,39 @@
 #include "Dbg.h"
 #include "EcuM.h"
 
+#ifdef CALIPER_PINS_ADC
+#include "Adc.h"
+#define CALIPER_CLK_PIN (ADC_CHANNEL_7)
+#define CALIPER_DAT_PIN (ADC_CHANNEL_6)
+#define CALIPER_ADC_GPIO_HIGH_LIMIT (768u)
+
+Gpio_PinState Caliper_CheckPinState(Adc_ChannelType_e ch)
+{
+    Gpio_PinState retVal = GPIO_LOW;
+    Adc_SetChannel(ch);
+    if(Adc_Read10bit() > CALIPER_ADC_GPIO_HIGH_LIMIT)
+    {
+        retVal = GPIO_HIGH;
+    }
+    else
+    {
+        retVal = GPIO_LOW;
+    }
+    return retVal;
+}
+
+#else
 /* Configuration defines for clock and data pins */
 #define CALIPER_CLK_PIN (GPIO_CHANNEL_PD6)
 #define CALIPER_DAT_PIN (GPIO_CHANNEL_PD7)
+
+Gpio_PinState Caliper_CheckPinState(Gpio_ChannelType ch)
+{
+    return Gpio_ReadChannel(ch);
+}
+
+#endif
+
 
 static Caliper_DataType Caliper_Data_s;
 
@@ -34,12 +64,9 @@ void Caliper_Handler(void)
     uint32 NewTimestampMicroseconds = 0u;
     sint32 Timediff = 0;
 
-    while (Gpio_ReadChannel(CALIPER_CLK_PIN) == GPIO_HIGH) {} //if clock is LOW wait until it turns to HIGH
-
+    while (Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_HIGH) {} //if clock is LOW wait until it turns to HIGH
     OldTimestampMicroseconds = EcuM_GetMicros();
-
-    while (Gpio_ReadChannel(CALIPER_CLK_PIN) == GPIO_LOW) {} //wait for the end of the HIGH pulse
-
+    while (Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_LOW) {} //wait for the end of the HIGH pulse
     cli();
     NewTimestampMicroseconds = EcuM_GetMicros();
     Timediff = (NewTimestampMicroseconds-OldTimestampMicroseconds);
@@ -66,9 +93,9 @@ static void Caliper_DecodeData(void)
 
     for(i = 0; i < 23; i++)
     {
-        while(Gpio_ReadChannel(CALIPER_CLK_PIN) == GPIO_HIGH) {} //wait until clock returns to HIGH- the first bit is not needed
-        while(Gpio_ReadChannel(CALIPER_CLK_PIN) == GPIO_LOW) {} //wait until clock returns to LOW
-        if (Gpio_ReadChannel(CALIPER_DAT_PIN) == GPIO_LOW)
+        while(Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_HIGH) {} //wait until clock returns to HIGH- the first bit is not needed
+        while(Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_LOW) {} //wait until clock returns to LOW
+        if (Caliper_CheckPinState(CALIPER_DAT_PIN) == GPIO_LOW)
         {
             if (i<20)
             {

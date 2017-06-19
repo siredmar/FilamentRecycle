@@ -163,8 +163,8 @@ void EcuM_Handler(void)
 
     if(Flag500ms)
     {
-//        Caliper_Handler();
-//        Caliper_PrintOutput();
+        Caliper_Handler();
+        Caliper_PrintOutput();
         Heating_Handler();
 
         if(Percentage >= 100.0)
