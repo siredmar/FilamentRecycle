@@ -34,11 +34,12 @@ SRC += src/Hal/Caliper/Caliper.c
 SRC += src/Hal/Heating/Heating.c
 SRC += src/Hal/R2RDac/R2RDac.c
 SRC += src/Hal/HC595/HC595.c
+SRC += src/Hal/Lcd/Lcd.c
 
 LIBSRC =
 
 INC = -I./inc -I./src/Bsw/Uart -I./src/Bsw/Adc -I./src/Bsw/Gpio -I./src/Bsw/Ecu -I./src/Bsw/Tools  -I./src/Bsw/Dbg -I./src/Bsw/Timer
-INC+= -I./src/Hal/Caliper -I./src/Hal/Heating -I./src/Hal/R2RDac -I./src/Hal/HC595
+INC+= -I./src/Hal/Caliper -I./src/Hal/Heating -I./src/Hal/R2RDac -I./src/Hal/HC595 -I./src/Hal/Lcd
 
 ASRC =
 OPT = s
@@ -119,7 +120,7 @@ LDFLAGS = $(EXTMEMOPTS) $(LDMAP) $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB) -Wl,--gc
 #AVRDUDE_PROGRAMMER = dragon_isp
 AVRDUDE_PROGRAMMER = avrispmkII
 #AVRDUDE_PORT = /dev/ttyUSB0
-AVRDUDE_PORT = /dev/ttyACM2
+AVRDUDE_PORT = /dev/ttyACM1
 #AVRDUDE_PORT = usb
 AVRDUDE_BAUD = 115200
 #AVRDUDE_BAUD = 38400
@@ -135,7 +136,7 @@ AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 
 # Uncomment the following if you do /not/ wish a verification to be
 # performed after programming the device.
-AVRDUDE_NO_VERIFY = -V
+#AVRDUDE_NO_VERIFY = -V
 
 # Increase verbosity level.  Please use this when submitting bug
 # reports about avrdude. See <http://savannah.nongnu.org/projects/avrdude>

@@ -6,38 +6,38 @@ const Gpio_ConfigType Gpio_InitialConfiguration_s =
 {
         {
                 /* PORT B */
-                {
-                        GPIO_FALSE,
+                {       /* Display RS */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PB0,
-                        GPIO_INPUT,
+                        GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Display EN */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PB1,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_LOW
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Display D7 */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PB2,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_LOW
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Display D4 */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PB3,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_LOW
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Display D5 */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PB4,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_LOW
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Display D6 */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PB5,
                         GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_LOW

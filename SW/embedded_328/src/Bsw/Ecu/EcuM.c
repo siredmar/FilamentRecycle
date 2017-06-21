@@ -13,6 +13,7 @@
 #include "Caliper.h"
 #include "Heating.h"
 #include "R2RDac.h"
+#include "Lcd.h"
 #include "Dbg.h"
 
 #define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
@@ -107,6 +108,7 @@ static void EcuM_InitModules(void)
     Heating_Init();
     R2RDac_Init();
     HC595_Init();
+    Lcd_Init();
 }
 
 static void EcuM_InitBaseTimer(void)
@@ -135,6 +137,10 @@ void EcuM_InitSystem(void)
     EcuM_InitWatchdog();
 #endif
     Uart_WriteString(UART_HWUNIT_0, "Started...\r\n");
+    Lcd_StringAtPosition("Filament Recycle l1", 0, 0);
+    Lcd_StringAtPosition("Filament Recycle l2", 0, 1);
+    Lcd_StringAtPosition("Filament Recycle l3", 0, 2);
+    Lcd_StringAtPosition("Filament Recycle l4", 0, 3);
     sei(); /* Enable the interrupts */
 }
 
@@ -151,21 +157,6 @@ void EcuM_Handler(void)
     if(Flag10ms)
     {
         Flag10ms = 0;
-#ifdef WDG_ENABLE
-        EcuM_TriggerEnableWatchdog();
-#endif
-    }
-
-    if(Flag100ms)
-    {
-        Flag100ms = 0;
-    }
-
-    if(Flag500ms)
-    {
-        Caliper_Handler();
-        Caliper_PrintOutput();
-        Heating_Handler();
 
         if(Percentage >= 100.0)
         {
@@ -176,6 +167,23 @@ void EcuM_Handler(void)
             Percentage += 10.0;
         }
         R2RDac_SetOutputPercentage(Percentage);
+#ifdef WDG_ENABLE
+        EcuM_TriggerEnableWatchdog();
+#endif
+    }
+
+    if(Flag100ms)
+    {
+        Flag100ms = 0;
+        //Gpio_ToggleChannel(GPIO_CHANNEL_PB0);
+    }
+
+    if(Flag500ms)
+    {
+        //Caliper_Handler();
+        //Caliper_PrintOutput();
+        Heating_Handler();
+
 
         Flag500ms = 0;
     }

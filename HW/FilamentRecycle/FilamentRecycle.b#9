@@ -43,7 +43,7 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
@@ -147,6 +147,8 @@
 <hole x="68" y="3" drill="1"/>
 <text x="29.5" y="34.75" size="1.778" layer="25" rot="R270">UART</text>
 <text x="41" y="36" size="1.778" layer="25" rot="R270">Motor</text>
+<text x="19.75" y="18.25" size="1.778" layer="25">FilamentRecycle V1
+Armin Schlegel (C) 2017</text>
 </plain>
 <libraries>
 <library name="SchlegelAr_Master">
@@ -3465,4 +3467,10 @@ design rules under a new name.</description>
 </errors>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

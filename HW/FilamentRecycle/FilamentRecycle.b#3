@@ -138,12 +138,6 @@
 <hole x="12" y="70" drill="1"/>
 <hole x="12" y="3" drill="1"/>
 <hole x="68" y="70" drill="1"/>
-<wire x1="-1" y1="74" x2="81" y2="74" width="1.5" layer="46"/>
-<wire x1="81" y1="74" x2="81" y2="35" width="1.5" layer="46"/>
-<wire x1="-1" y1="74" x2="-1" y2="34" width="1.5" layer="46"/>
-<wire x1="-1" y1="32" x2="-1" y2="-1" width="1.5" layer="46"/>
-<wire x1="-1" y1="-1" x2="81" y2="-1" width="1.5" layer="46"/>
-<wire x1="81" y1="-1" x2="81" y2="33" width="1.5" layer="46"/>
 <hole x="68" y="3" drill="1"/>
 <text x="16.25" y="27" size="1.778" layer="25">FilamentRecycle V1
 Armin Schlegel (C) 2017</text>

@@ -7019,9 +7019,9 @@ Source: DCJ0202.pdf</description>
 <part name="SV2" library="con-harting-ml" deviceset="ML10" device=""/>
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
-<part name="R29" library="SchlegelAr_Master" deviceset="R" device="0603" value="10k"/>
-<part name="R30" library="SchlegelAr_Master" deviceset="R" device="0603" value="10k"/>
-<part name="R31" library="SchlegelAr_Master" deviceset="R" device="0603" value="10k"/>
+<part name="R29" library="SchlegelAr_Master" deviceset="R" device="0603" value="0R"/>
+<part name="R30" library="SchlegelAr_Master" deviceset="R" device="0603" value="0R"/>
+<part name="R31" library="SchlegelAr_Master" deviceset="R" device="0603" value="0R"/>
 <part name="P+8" library="supply1" deviceset="+12V" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
