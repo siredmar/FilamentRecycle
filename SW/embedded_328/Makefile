@@ -35,6 +35,7 @@ SRC += src/Hal/Heating/Heating.c
 SRC += src/Hal/R2RDac/R2RDac.c
 SRC += src/Hal/HC595/HC595.c
 SRC += src/Hal/Lcd/Lcd.c
+SRC += src/Hal/Led/Led.c
 SRC += src/Hal/RotaryEncoder/RotaryEncoder.c
 
 SRC += src/App/App.c
@@ -42,7 +43,7 @@ SRC += src/App/App.c
 LIBSRC =
 
 INC = -I./inc -I./src/Bsw/Uart -I./src/Bsw/Adc -I./src/Bsw/Gpio -I./src/Bsw/Ecu -I./src/Bsw/Tools  -I./src/Bsw/Dbg -I./src/Bsw/Timer
-INC+= -I./src/Hal/Caliper -I./src/Hal/Heating -I./src/Hal/R2RDac -I./src/Hal/HC595 -I./src/Hal/Lcd -I./src/Hal/RotaryEncoder
+INC+= -I./src/Hal/Caliper -I./src/Hal/Heating -I./src/Hal/R2RDac -I./src/Hal/HC595 -I./src/Hal/Lcd -I./src/Hal/RotaryEncoder -I./src/Hal/Led
 INC+= -I./src/App
 ASRC =
 OPT = s

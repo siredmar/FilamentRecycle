@@ -59,7 +59,6 @@ static void Lcd_CommandNibble(uint8 data)
 }
 
 
-
 void Lcd_Init(void)
 {
     _delay_ms(LCD_BOOTUP_MS);

@@ -33,7 +33,7 @@
 volatile uint32 BaseTimer_ui32 = 0;
 volatile uint32 TimestampSeconds_ui32 = 0;
 volatile uint8  Flag1ms = 0;
-volatile uint8  Flag10ms = 0;
+volatile uint8  Flag5ms = 0;
 volatile uint8  Flag100ms = 0;
 volatile uint8  Flag500ms = 0;
 volatile uint8  Flag1000ms = 0;
@@ -115,6 +115,7 @@ static void EcuM_InitModules(void)
     HC595_Init();
     Lcd_Init();
     RotaryEncoder_Init();
+    Led_Init();
 
     App_Init();
 }
@@ -151,6 +152,7 @@ void EcuM_InitSystem(void)
 
 void EcuM_Handler(void)
 {
+    uint8 string[30];
     SoftTimer_DataType Timer;
     static sint8 EncoderValue = 0;
     RotaryEncoder_EncodedValuesType RotaryValue;
@@ -161,9 +163,9 @@ void EcuM_Handler(void)
         Flag1ms = 0;
     }
 
-    if(Flag10ms)
+    if(Flag5ms)
     {
-        Flag10ms = 0;
+        Flag5ms = 0;
         RotEvent_e = RotaryEncoder_Handler();
         App_Data_s.RotaryEncoder_s.State_s = RotEvent_e.Button_s.State_e;
         ev = RotaryEncoder_ReadEvent();
@@ -198,14 +200,19 @@ void EcuM_Handler(void)
     {
         Flag100ms = 0;
         App_Handler();
+        Led_Handler();
     }
 
     if(Flag500ms)
     {
+        //Dbg_ReadRegister(UART_HWUNIT_0, "DDRD:  ", GPIO_DDRD_ADDRESS);
+        //Dbg_ReadRegister(UART_HWUNIT_0, "PORTD: ", GPIO_PORTD_ADDRESS);
         Caliper_Handler();
-        //Caliper_PrintOutput();
         Heating_Handler();
+        sprintf(string, "Time: %u s", (uint32)(EcuM_GetMillis()));
+        Lcd_StringAtPosition(string, 0, 2);
         Flag500ms = 0;
+
     }
 
     if(Flag1000ms)
@@ -253,7 +260,7 @@ SIGNAL(TIMER0_OVF_vect)
 
     if(EcuM_TimestampMilliseconds % 5 == 0)
     {
-        Flag10ms = TRUE;
+        Flag5ms = TRUE;
     }
     Flag1ms = TRUE;
 }

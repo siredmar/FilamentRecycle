@@ -15,6 +15,12 @@
 /* Selects whether caliper input pins are pure ADC pins used as GPIO inputs or real GPIO pins */
 #define CALIPER_PINS_ADC
 
+typedef enum
+{
+    CALIPER_STATUS_ERROR = 0u,
+    CALIPER_STATUS_OK
+} Caliper_StatusType;
+
 typedef struct
 {
     uint32 Timestamp_ui32;
@@ -26,7 +32,7 @@ typedef struct
     Caliper_ResultType Measurement;
 } Caliper_DataType;
 
-void Caliper_Handler(void);
+Caliper_StatusType Caliper_Handler(void);
 void Caliper_Init(void);
 void Caliper_PrintOutput(void);
 

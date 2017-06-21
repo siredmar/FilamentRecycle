@@ -16,6 +16,8 @@
 
 #ifdef CALIPER_PINS_ADC
 #include "Adc.h"
+
+#define CALIPER_ERROR_TIMEOUT (10000u)
 #define CALIPER_CLK_PIN (ADC_CHANNEL_7)
 #define CALIPER_DAT_PIN (ADC_CHANNEL_6)
 #define CALIPER_ADC_GPIO_HIGH_LIMIT (768u)
@@ -56,15 +58,17 @@ void Caliper_Init(void)
     Caliper_Data_s.Measurement.Timestamp_ui32 = 0;
 }
 
-void Caliper_Handler(void)
+Caliper_StatusType Caliper_Handler(void)
 {
+    Caliper_StatusType Ret = CALIPER_STATUS_ERROR;
     uint32 OldTimestampMicroseconds = 0u;
     uint32 NewTimestampMicroseconds = 0u;
     sint32 Timediff = 0;
-
-    while (Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_HIGH) {} //if clock is LOW wait until it turns to HIGH
+    //if clock is LOW wait until it turns to HIGH
+    while (Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_HIGH) { }
     OldTimestampMicroseconds = EcuM_GetMicros();
-    while (Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_LOW) {} //wait for the end of the HIGH pulse
+    //wait for the end of the HIGH pulse
+    while (Caliper_CheckPinState(CALIPER_CLK_PIN) == GPIO_LOW) { }
     cli();
     NewTimestampMicroseconds = EcuM_GetMicros();
     Timediff = (NewTimestampMicroseconds-OldTimestampMicroseconds);
@@ -75,12 +79,13 @@ void Caliper_Handler(void)
         Caliper_DecodeData(); //decode the bit sequence
     }
     sei();
+    return Ret;
 }
 
 void Caliper_PrintOutput(void)
 {
     Dbg_ReadVariableFloat("\r\nWidth [mm]:\t\t", Caliper_Data_s.Measurement.Result_f32);
-//    Dbg_ReadVariableInteger("Timestamp [ms]: ", Caliper_Data_s.Measurement.Timestamp_ui32);
+    //    Dbg_ReadVariableInteger("Timestamp [ms]: ", Caliper_Data_s.Measurement.Timestamp_ui32);
 }
 
 static void Caliper_DecodeData(void)

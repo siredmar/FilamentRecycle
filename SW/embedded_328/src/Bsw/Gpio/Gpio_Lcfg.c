@@ -142,11 +142,11 @@ const Gpio_ConfigType Gpio_InitialConfiguration_s =
                         GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
-                        GPIO_FALSE,
+                {       /* LED */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PD7,
-                        GPIO_INPUT,
-                        GPIO_PIN_INITIAL_HIGH
+                        GPIO_OUTPUT,
+                        GPIO_PIN_INITIAL_LOW
                 }
         }
 };

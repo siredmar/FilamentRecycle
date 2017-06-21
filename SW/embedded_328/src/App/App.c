@@ -11,6 +11,8 @@
 #include "RotaryEncoder.h"
 #include "Caliper.h"
 #include "Heating.h"
+#include "Led.h"
+#include <avr/io.h>
 
 App_DataType App_Data_s;
 extern Caliper_DataType Caliper_Data_s;
@@ -29,6 +31,16 @@ void App_Handler(void)
     App_StatusScreen();
 }
 
+void App_GetInputs(void)
+{
+
+}
+
+void App_AppSetOutputs(void)
+{
+
+}
+
 void App_StatusScreen(void)
 {
     uint8 string[30];
@@ -37,13 +49,12 @@ void App_StatusScreen(void)
 
     if(App_Data_s.RotaryEncoder_s.State_s == ROTARY_ENCODER_BTN_PRESSED)
     {
-        Lcd_StringAtPosition("Pressed ", 0, 11);
+        Lcd_StringAtPosition("Pressed ", 11, 1);
     }
     else
     {
-        Lcd_StringAtPosition("Released", 0, 11);
+        Lcd_StringAtPosition("Released", 11, 1);
     }
-
 
     Lcd_StringAtPosition("d: ", 0, 3);
     Lcd_PrintFloat(Caliper_Data_s.Measurement.Result_f32, 2, 3);
@@ -57,4 +68,9 @@ void App_StatusScreen(void)
     {
         Lcd_Data(' ');
     }
+    Led_SetState(LED_STATE_BLINKING_FAST);
+    //Led_SetState(LED_STATE_BLINKING_SLOW);
+//    Led_SetState(LED_STATE_OFF);
+    //Led_SetState(LED_STATE_ON);
+
 }
