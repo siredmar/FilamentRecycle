@@ -16,7 +16,7 @@
 // the value of the 'other' resistor
 #define SERIESRESISTOR 4700.0
 
-static Heating_DataType Heating_Data_s;
+Heating_DataType Heating_Data_s;
 
 void Heating_Init(void)
 {
@@ -30,7 +30,7 @@ void Heating_Handler(void)
     Adc_SetChannel(HEATING_NTC_ADC_CHANNEL);
     Heating_Data_s.TemperatureAdcValue_ui16 = Adc_Read10bit();
     Heating_CalculateTemperature();
-    Heating_OutputValue();
+//    Heating_OutputValue();
 }
 
 void Heating_OutputValue(void)
@@ -38,6 +38,7 @@ void Heating_OutputValue(void)
 //    Dbg_ReadVariableIntegerUnsigned("Adc: ", (uint32)(Heating_Data_s.TemperatureAdcValue_ui16 & 0xFFFF));
 //    Dbg_ReadVariableFloat("Res: ", Heating_Data_s.TemperatureResistorValue_f32);
     Dbg_ReadVariableFloat("Temperature [C]:\t", Heating_Data_s.ActualTemperature_f32);
+//    Lcd_PrintFloat(Heating_Data_s.ActualTemperature_f32, 12, 3);
 }
 
 void Heating_SetTemperature(float32 Temp_f32)

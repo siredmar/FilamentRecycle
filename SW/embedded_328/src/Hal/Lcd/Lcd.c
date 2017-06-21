@@ -168,6 +168,13 @@ void Lcd_StringAtPosition(const char *data, uint8 x, uint8 y)
         Lcd_Data(*data++);
 }
 
+void Lcd_PrintFloat(float32 variable, uint8 x, uint8 y)
+{
+    uint8 string[20];
+    sprintf(string, "%.2f", (float32)variable);
+    Lcd_StringAtPosition(string, x, y);
+}
+
 
 void Lcd_GenerateChar(uint8 startadresse, const uint8 *data)
 {

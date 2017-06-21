@@ -124,26 +124,26 @@ const Gpio_ConfigType Gpio_InitialConfiguration_s =
                         GPIO_OUTPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Rotary Encoder Phase A */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PD4,
-                        GPIO_OUTPUT,
+                        GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {
-                        GPIO_FALSE,
+                {       /* Rotary Encoder Button */
+                        GPIO_TRUE,
                         GPIO_CHANNEL_PD5,
-                        GPIO_OUTPUT,
+                        GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {       /* Caliper DAT Pin */
+                {       /* Rotary Encoder Phase B */
                         GPIO_TRUE,
                         GPIO_CHANNEL_PD6,
                         GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH
                 },
-                {       /* Caliper CLK Pin */
-                        GPIO_TRUE,
+                {
+                        GPIO_FALSE,
                         GPIO_CHANNEL_PD7,
                         GPIO_INPUT,
                         GPIO_PIN_INITIAL_HIGH

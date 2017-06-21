@@ -20,6 +20,9 @@
 #define CALIPER_DAT_PIN (ADC_CHANNEL_6)
 #define CALIPER_ADC_GPIO_HIGH_LIMIT (768u)
 
+Caliper_DataType Caliper_Data_s;
+static void Caliper_DecodeData(void);
+
 Gpio_PinState Caliper_CheckPinState(Adc_ChannelType_e ch)
 {
     Gpio_PinState retVal = GPIO_LOW;
@@ -46,11 +49,6 @@ Gpio_PinState Caliper_CheckPinState(Gpio_ChannelType ch)
 }
 
 #endif
-
-
-static Caliper_DataType Caliper_Data_s;
-
-static void Caliper_DecodeData(void);
 
 void Caliper_Init(void)
 {
